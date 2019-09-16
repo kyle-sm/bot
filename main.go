@@ -34,16 +34,8 @@ func main() {
 		fmt.Println("Error opening Discord session: ", err)
 		return
 	} else {
-		fmt.Println("Miku is online.")
+		fmt.Println("Bot is online.")
 	}
-
-	go func() {
-		scanner := bufio.NewScanner(os.Stdin)
-		for scanner.Scan() {
-			//fmt.Println() // Println will add back the final '\n'
-			_, _ = dg.ChannelMessageSend("435224851423428622", scanner.Text())
-		}
-	}()
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
@@ -54,7 +46,7 @@ func main() {
 	return
 }
 
-//[435224851423428620|435224851423428622]
+
 func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if strings.Contains(strings.ToLower(m.Message.Content), "miku play despacito") {
 		_, _ = s.ChannelMessageSend(m.Message.ChannelID, "https://www.youtube.com/watch?v=40qJapBsOp4")

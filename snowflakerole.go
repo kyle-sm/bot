@@ -12,7 +12,7 @@ func SnowflakeRole(s *discordgo.Session, guildID, userID, color, name string) {
 	memberData, err := s.GuildMember(guildID, userID)
 	memberCurrentRoles := memberData.Roles
 
-	if len(memberCurrentRoles) > 0 && memberCurrentRoles[0] != "gay baby jailed" {
+	if len(memberCurrentRoles) > 0 {
 		role, err = s.GuildRoleEdit(guildID, memberCurrentRoles[0], name, ParseColorInput(color), false, 0, false)
 		HandleError(err, "Error making changes to role with ID "+memberCurrentRoles[0])
 		return
